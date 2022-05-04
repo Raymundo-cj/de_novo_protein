@@ -1,6 +1,11 @@
 # de_novo_protein
 This is a notebook about learning rosetta.
 
+rosetta路径
+```
+/public3/home/pg3152/zzl/zzl_softwares
+```
+
 ## 1.建立segment库
 
 ```
@@ -24,19 +29,9 @@ cat clean_pdb.py
 ![image](https://user-images.githubusercontent.com/64938817/166611991-109e549a-77fb-462d-abc8-652dfd51ac06.png)
 但是问题不是很大
 
-rosetta路径
-```
-/public3/home/pg3152/zzl/zzl_softwares
-```
-
-```
-
-/public3/home/pg3152/zzl/zzl_softwares/rosetta_src_2021.16.61629_bundle/main/tools/fragment_tools/pdb2vall/pdb_scripts/clean_pdb.py
-
-```
-
-
 
 执行检查命令后的界面
+
 ![image](https://user-images.githubusercontent.com/64938817/166611529-1c041e6c-c7f0-43d4-9717-6e7bcd565ede.png)
+
 
