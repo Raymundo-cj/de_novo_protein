@@ -63,6 +63,11 @@ edge_file_generator.linuxgccrelease -sewing:smotifs_H_5_20_L_1_3_E_3_10_L_1_3_H_
 
 edge_file_generator.linuxgccrelease -sewing:smotifs_H_5_20_L_1_3_E_3_10_L_1_3_H_5_20$.segments -test1$.edges
 ```
+edge_file_generator.default.linuxgccrelease -sewing:smotifs_H_5_20_L_1_3_E_3_10_L_1_3_H_5_20.segments -test1.edges
+
+```
+edge_file_generator.default.linuxgccrelease -sewing:smotifs_H_5_20_L_1_3_E_3_10_L_1_3_H_5_20.segments smotifs_H_5_20_L_1_3_E_3_10_L_1_3_H_5_20.edges
+```
 
 ![image](https://user-images.githubusercontent.com/64938817/166611529-1c041e6c-c7f0-43d4-9717-6e7bcd565ede.png)
 
