@@ -50,6 +50,8 @@ segment_file_generator.mpi.linuxclangrelease \
 
 * 并未找到strict_dssp_changes
 * 不加strict_dssp_changes 程序也没有报错
+执行命令后会得到一个segment文件
+
 
 执行检查命令后的界面
 
