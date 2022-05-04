@@ -55,6 +55,10 @@ segment_file_generator.mpi.linuxclangrelease \
 
 执行检查命令后的界面
 
+```
+mpirun -np 2 edge_file_generator.linuxclangrelease -sewing:model_file_name $*.segments -edge_file_name $*.edges
+```
+
 ![image](https://user-images.githubusercontent.com/64938817/166611529-1c041e6c-c7f0-43d4-9717-6e7bcd565ede.png)
 
 
