@@ -40,7 +40,7 @@ cp pdbs.txt $work_dir && cd $work_dir
 建立segment文件
 ```
 # strict_dssp_changes这个不加会报错，据说是已知bug，一年了都没修复...
-segment_file_generator.mpi.linuxclangrelease \
+segment_file_generator.linuxclangrelease \
 -ignore_unrecognized_res \
 -pdb_list_file pdbs.txt \
 -motif_file motifs.txt \
@@ -57,6 +57,11 @@ segment_file_generator.mpi.linuxclangrelease \
 
 ```
 mpirun -np 2 edge_file_generator.linuxclangrelease -sewing:model_file_name $*.segments -edge_file_name $*.edges
+
+edge_file_generator.linuxclangrelease -sewing:smotifs_H_5_20_L_1_3_E_3_10_L_1_3_H_5_20.segments -test1.edges
+edge_file_generator.linuxgccrelease -sewing:smotifs_H_5_20_L_1_3_E_3_10_L_1_3_H_5_20.segment $*.segments
+
+edge_file_generator.linuxgccrelease -sewing:/public3/home/pg3152/caojian/sewing/smotifs_H_5_20_L_1_3_E_3_10_L_1_3_H_5_20.segment $*.segments -test1 $*.edges
 ```
 
 ![image](https://user-images.githubusercontent.com/64938817/166611529-1c041e6c-c7f0-43d4-9717-6e7bcd565ede.png)
