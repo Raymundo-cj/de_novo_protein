@@ -140,4 +140,7 @@ rosetta_scripts.linuxgccrelease -s 1LN0.pdb -parser:protocol RosettaScript.xml @
 ![image](https://user-images.githubusercontent.com/64938817/166944438-721d7ce8-f9f1-486f-9040-967d2f91daeb.png)![image](https://user-images.githubusercontent.com/64938817/166944511-b559760e-30b9-480c-9aad-f8f328343ebc.png)
 
 
-
+记得将命令写成脚本，在后台执行
+```
+sbatch run_sewing.sh
+```
