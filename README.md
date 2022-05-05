@@ -56,19 +56,13 @@ segment_file_generator.linuxclangrelease \
 执行检查命令后的界面
 
 ```
-mpirun -np 2 edge_file_generator.linuxclangrelease -sewing:model_file_name $*.segments -edge_file_name $*.edges
-
-edge_file_generator.linuxclangrelease -sewing:smotifs_H_5_20_L_1_3_E_3_10_L_1_3_H_5_20.segments -test1.edges
-edge_file_generator.linuxgccrelease -sewing:smotifs_H_5_20_L_1_3_E_3_10_L_1_3_H_5_20.segment $*.segments
-
-edge_file_generator.linuxgccrelease -sewing:smotifs_H_5_20_L_1_3_E_3_10_L_1_3_H_5_20$.segments -test1$.edges
-```
-edge_file_generator.default.linuxgccrelease -sewing:smotifs_H_5_20_L_1_3_E_3_10_L_1_3_H_5_20.segments -test1.edges
-
-```
-edge_file_generator.default.linuxgccrelease -sewing:smotifs_H_5_20_L_1_3_E_3_10_L_1_3_H_5_20.segments smotifs_H_5_20_L_1_3_E_3_10_L_1_3_H_5_20.edges
+edge_file_generator.default.linuxgccrelease -sewing:tev1.segments tev1.edges
 ```
 
 ![image](https://user-images.githubusercontent.com/64938817/166611529-1c041e6c-c7f0-43d4-9717-6e7bcd565ede.png)
 
+正确的命令
+```
+edge_file_generator.linuxclangrelease -sewing:model_file_name tev1.segments --edge_file_name tev1.edges
+```
 
