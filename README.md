@@ -6,7 +6,7 @@ rosetta路径
 /public3/home/pg3152/zzl/zzl_softwares
 ```
 
-## 1.建立segment库
+### 1.建立segment库
 
 ```
 H 5 20, L 1 3, E 3 10, L 1 3, H 5 20
@@ -68,17 +68,17 @@ edge_file_generator.linuxclangrelease -sewing:model_file_name tev1.segments --ed
 原因是命令写错了┭┮﹏┭┮
 
 基本格式：
-* -model_file_name : Path to the segment file
-* -edge_file_name : Path to save generated edge file
+* `-model_file_name` : Path to the segment file
+* `-edge_file_name`: Path to save generated edge file
 
 可选格式：
-* -max_clash_score : Maximum number of clashed atoms to allow during alignment
+* `-max_clash_score` : Maximum number of clashed atoms to allow during alignment
 * 冲撞阈值，超出该阈值后，认为两个segment文件之间的匹配度较差
-* -min_hash_score : The minimum number of aligned atoms to determine whether two segments are structurally compatible
+* `-min_hash_score` : The minimum number of aligned atoms to determine whether two segments are structurally compatible
 * 打分阈值，打分超出这个值后，认为是匹配良好的（推荐设置为20）
-* -boxes_per_dimension : The number of bins to consider in the geometric hash. 3 and 5 are the only acceptable values
+* `-boxes_per_dimension` : The number of bins to consider in the geometric hash. 3 and 5 are the only acceptable values
 * 在几何散列中要考虑的箱子数，只能设置3或5
-* -hash_opposite_termini : Hashing will occur between segments with opposite termini (N to C or C to N )
+* `-hash_opposite_termini` : Hashing will occur between segments with opposite termini (N to C or C to N )
 * 反向组装顺序，N->C端为默认顺序，设置后，从C->N端装配。可以产生更加多样化的Segments
 
 example
