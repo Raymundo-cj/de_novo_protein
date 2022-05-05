@@ -12,6 +12,8 @@ rosetta路径
 H 5 20, L 1 3, E 3 10, L 1 3, H 5 20
 ```
 
+参数解释：
+
 生成数据库
 ```
 # 清洗数据库
@@ -85,3 +87,57 @@ example
 ```
 edge_file_generator.default.xxx -model_file_name smotifs_H_1_100_L_1_100_H_1_100.segments -edge_file_name smotifs_H_1_100_L_1_100_H_1_100.edges -boxes_per_dimension 3
 ```
+### 运行组装
+1.先建立一个flag文件
+
+```
+-ignore_unrecognized_res
+-detect_disulf false
+-mh
+    -score
+        -use_ss1 true
+        -use_ss2 true
+        -use_aa1 false
+        -use_aa2 false
+    -path
+        -motifs /public3/home/pg3152/zzl/zzl_softwares/rosetta_src_2021.16.61629_bundle/main/database/additional_protocol_data/sewing/xsmax_bb_ss_AILV_resl0.8_msc0.3/xsmax_bb_ss_AILV_resl0.8_msc0.3.rpm.bin.gz
+        -scores_BB_BB /public3/home/pg3152/zzl/zzl_softwares/rosetta_src_2021.16.61629_bundle/main/database/additional_protocol_data/sewing/xsmax_bb_ss_AILV_resl0.8_msc0.3
+        -gen_reverse_motifs_on_load false
+```
+flag文件建立好之后需要一个pdb文件，这里复制了一个1LN0.pdb文件在这里
+
+关于为什么用pdb文件，官方网站的解释是：一定要有，但是执行的过程中是可以忽略的。
+之后执行如下的命令，实现拼接
+```
+rosetta_scripts.linuxgccrelease -s 1LN0.pdb -parser:protocol RosettaScript.xml @flag -nstruct 4 -out:path:pdb output
+```
+但是执行之后出现了报错
+
+![image](https://user-images.githubusercontent.com/64938817/166937654-50a91c1d-8db3-4679-b0e5-11046131a971.png)
+选项文件中的注释必须以'#'开头，选项必须以'-'行开头 ？？？不是很懂
+应该是flag文件出现了问题。进行了如下修改
+
+```
+-mh:ignore_unrecognized_res
+-mh:detect_disulf false
+-mh:score:use_ss1 true
+-mh:score:use_ss2 true
+-mh:score:use_aa1 false
+-mh:score:use_aa2 false
+-mh:path:motifs /public3/home/pg3152/zzl/zzl_softwares/rosetta_src_2021.16.61629_bundle/main/database/additional_protocol_data/sewing/xsmax_bb_ss_AILV_resl0.8_msc0.3/xsmax_bb_ss_AILV_resl0.8_msc0.3.rpm.bin.gz
+-mh:path:scores_BB_BB 
+/public3/home/pg3152/zzl/zzl_softwares/rosetta_src_2021.16.61629_bundle/main/database/additional_protocol_data/sewing/xsmax_bb_ss_AILV_resl0.8_msc0.3
+-mh:gen_reverse_motifs_on_load false
+```
+出现了下面的错误：
+
+![image](https://user-images.githubusercontent.com/64938817/166940934-f5cc6cc9-00cc-4f68-9030-32b28800f782.png)
+在说mh用法错误
+
+修改之后可以运行
+
+出现下面的报错：
+![image](https://user-images.githubusercontent.com/64938817/166944438-721d7ce8-f9f1-486f-9040-967d2f91daeb.png)![image](https://user-images.githubusercontent.com/64938817/166944511-b559760e-30b9-480c-9aad-f8f328343ebc.png)
+
+
+
