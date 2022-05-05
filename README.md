@@ -52,17 +52,36 @@ segment_file_generator.linuxclangrelease \
 * 不加strict_dssp_changes 程序也没有报错
 执行命令后会得到一个segment文件
 
-
-执行检查命令后的界面
+检查命令
 
 ```
-edge_file_generator.default.linuxgccrelease -sewing:tev1.segments tev1.edges
+edge_file_generator.default.linuxgccrelease -sewing:smotifs_H_5_20_L_1_3_E_3_10_L_1_3_H_5_20.segments tev1.edges
 ```
 
-![image](https://user-images.githubusercontent.com/64938817/166611529-1c041e6c-c7f0-43d4-9717-6e7bcd565ede.png)
+![image](https://user-images.githubusercontent.com/64938817/166854018-a1caa82c-cbbd-4629-9cb8-72525d4ca728.png)
+
 
 正确的命令
 ```
 edge_file_generator.linuxclangrelease -sewing:model_file_name tev1.segments --edge_file_name tev1.edges
 ```
+原因是命令写错了┭┮﹏┭┮
 
+基本格式：
+* -model_file_name : Path to the segment file
+* -edge_file_name : Path to save generated edge file
+
+可选格式：
+* -max_clash_score : Maximum number of clashed atoms to allow during alignment
+* 冲撞阈值，超出该阈值后，认为两个segment文件之间的匹配度较差
+* -min_hash_score : The minimum number of aligned atoms to determine whether two segments are structurally compatible
+* 打分阈值，打分超出这个值后，认为是匹配良好的（推荐设置为20）
+* -boxes_per_dimension : The number of bins to consider in the geometric hash. 3 and 5 are the only acceptable values
+* 在几何散列中要考虑的箱子数，只能设置3或5
+* -hash_opposite_termini : Hashing will occur between segments with opposite termini (N to C or C to N )
+* 反向组装顺序，N->C端为默认顺序，设置后，从C->N端装配。可以产生更加多样化的Segments
+
+example
+```
+edge_file_generator.default.xxx -model_file_name smotifs_H_1_100_L_1_100_H_1_100.segments -edge_file_name smotifs_H_1_100_L_1_100_H_1_100.edges -boxes_per_dimension 3
+```
