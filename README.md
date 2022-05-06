@@ -137,10 +137,18 @@ rosetta_scripts.linuxgccrelease -s 1LN0.pdb -parser:protocol RosettaScript.xml @
 修改之后可以运行
 
 出现下面的报错：
-![image](https://user-images.githubusercontent.com/64938817/166944438-721d7ce8-f9f1-486f-9040-967d2f91daeb.png)![image](https://user-images.githubusercontent.com/64938817/166944511-b559760e-30b9-480c-9aad-f8f328343ebc.png)
+
+![image](https://user-images.githubusercontent.com/64938817/166944438-721d7ce8-f9f1-486f-9040-967d2f91daeb.png)
+![image](https://user-images.githubusercontent.com/64938817/166944511-b559760e-30b9-480c-9aad-f8f328343ebc.png)
 
 
 记得将命令写成脚本，在后台执行
 ```
 sbatch run_sewing.sh
 ```
+命令运行后得到四个pdb文件：
+在pymol中查看发现4个结构是一样的
+
+![image](https://user-images.githubusercontent.com/64938817/167051399-c2983e1e-0c95-4aab-b7ec-ea25924c62bb.png)
+
+不懂什么原因
