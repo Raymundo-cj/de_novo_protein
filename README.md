@@ -24,6 +24,7 @@ for i in $(ls $(pwd)); do python /public3/home/pg3152/zzl/zzl_softwares/rosetta_
 出现的问题
 ![image](https://user-images.githubusercontent.com/64938817/166611864-5143b60b-68f0-4dfc-81aa-752e33dd721d.png)
 查看源代码
+
 ```
 cd /public3/home/pg3152/zzl/zzl_softwares/rosetta_src_2021.16.61629_bundle/main/tools/fragment_tools/pdb2vall/pdb_scripts/
 cat clean_pdb.py 
@@ -53,8 +54,9 @@ segment_file_generator.linuxgccrelease \
 * 并未找到strict_dssp_changes
 * 不加strict_dssp_changes 程序也没有报错
 执行命令后会得到一个segment文件
+```
 segment_file_generator.default.linuxgccrelease -database ~/public3/home/pg3152/zzl/zzl_softwares/rosetta_src_2021.16.61629_bundle/main/database/ -ignore_unrecognized_res -pdb_list_file pdbs.txt -motif_file motifs.txt
-
+```
 检查命令
 
 ```
