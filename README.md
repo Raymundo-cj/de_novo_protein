@@ -42,7 +42,7 @@ cp pdbs.txt $work_dir && cd $work_dir
 建立segment文件
 ```
 # strict_dssp_changes这个不加会报错，据说是已知bug，一年了都没修复...
-segment_file_generator.linuxclangrelease \
+segment_file_generator.linuxgccrelease \
 -ignore_unrecognized_res \
 -pdb_list_file pdbs.txt \
 -motif_file motifs.txt \
@@ -53,6 +53,7 @@ segment_file_generator.linuxclangrelease \
 * 并未找到strict_dssp_changes
 * 不加strict_dssp_changes 程序也没有报错
 执行命令后会得到一个segment文件
+segment_file_generator.default.linuxgccrelease -database ~/public3/home/pg3152/zzl/zzl_softwares/rosetta_src_2021.16.61629_bundle/main/database/ -ignore_unrecognized_res -pdb_list_file pdbs.txt -motif_file motifs.txt
 
 检查命令
 
