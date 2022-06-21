@@ -144,6 +144,19 @@ rosetta_scripts.linuxgccrelease -s 1LN0.pdb -parser:protocol RosettaScript.xml @
 ![image](https://user-images.githubusercontent.com/64938817/166944438-721d7ce8-f9f1-486f-9040-967d2f91daeb.png)
 ![image](https://user-images.githubusercontent.com/64938817/166944511-b559760e-30b9-480c-9aad-f8f328343ebc.png)
 
+```
+1 -ignore_unrecognized_res                                                                 
+  2 -detect_disulf false
+  3 -mh
+  4     -score
+  5         -use_ss1 true
+  6         -use_ss2 true
+  7         -use_aa1 false
+  8         -use_aa2 false
+  9     -path
+ 10         -motifs /public3/home/pg3152/zzl/zzl_softwares/rosetta_src_2021.16.61629_bundle/m    ain/database/additional_protocol_data/sewing/xsmax_bb_ss_AILV_resl0.8_msc0.3/xsmax_bb_ss_    AILV_resl0.8_msc0.3.rpm.bin.gz
+ 11         -scores_BB_BB /public3/home/pg3152/zzl/zzl_softwares/rosetta_src_2021.16.61629_bu    ndle/main/database/additional_protocol_data/sewing/xsmax_bb_ss_AILV_resl0.8_msc0.3/xsmax_    bb_ss_AILV_resl0.8_msc0.3
+```
 
 记得将命令写成脚本，在后台执行
 ```
