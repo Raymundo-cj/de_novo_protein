@@ -154,4 +154,7 @@ sbatch run_sewing.sh
 
 ![image](https://user-images.githubusercontent.com/64938817/167051399-c2983e1e-0c95-4aab-b7ec-ea25924c62bb.png)
 
-不懂什么原因
+不懂什么原因（后面师姐说在预测后得到的结构中就是通过打分函数出来的结果，而这里出现4个文件是因为自己选择了4个文件，且为系统打分最好的四个）
+
+
+
