@@ -57,6 +57,15 @@ segment_file_generator.default.linuxgccrelease \
 ```
 segment_file_generator.default.linuxgccrelease -database /public3/home/pg3152/zzl/zzl_softwares/rosetta_src_2021.16.61629_bundle/main/database -ignore_unrecognized_res -pdb_list_file pdbs.txt -motif_file motifs.txt -strict_dssp_changes false
 ```
+
+```
+#!/bin/bash
+/public3/home/pg3152/zzl/zzl_softwares/rosetta_src_2021.16.61629_bundle/main/source/bin/segment_file_generator.linuxgccrelease \
+-ignore_unrecognized_res \
+-pdb_list_file pdbs_ai.txt \
+-motif_file motif-e.txt \
+-strict_dssp_changes false
+```
 检查命令
 
 ```
