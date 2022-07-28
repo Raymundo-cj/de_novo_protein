@@ -13,10 +13,11 @@ H 5 20, L 1 3, E 3 10, L 1 3, H 5 20
 ```
 
 参数解释：
+H (helix), L (loop), E (strand), N (any), U (not helix), Y (not loop), and R (not strand)
 
 生成数据库
 ```
-# 清洗数据库
+### 2.清洗数据库
 cd $top8000_chains_70
 for i in $(ls $(pwd)); do python /public3/home/pg3152/zzl/zzl_softwares/rosetta_src_2021.16.61629_bundle/main/tools/fragment_tools/pdb2vall/pdb_scripts/clean_pdb.py $i; rm -rf $i; done
 # 执行此操作会将文件夹里面的所有文件清空！！！
@@ -54,19 +55,17 @@ segment_file_generator.default.linuxgccrelease \
 * 并未找到strict_dssp_changes
 * 不加strict_dssp_changes 程序也没有报错
 执行命令后会得到一个segment文件
-```
-segment_file_generator.default.linuxgccrelease -database /public3/home/pg3152/zzl/zzl_softwares/rosetta_src_2021.16.61629_bundle/main/database -ignore_unrecognized_res -pdb_list_file pdbs.txt -motif_file motifs.txt -strict_dssp_changes false
-```
+
+修改之后的命令
 
 ```
-#!/bin/bash
 /public3/home/pg3152/zzl/zzl_softwares/rosetta_src_2021.16.61629_bundle/main/source/bin/segment_file_generator.linuxgccrelease \
 -ignore_unrecognized_res \
--pdb_list_file pdbs_ai.txt \
--motif_file motif-e.txt \
+ -pdb_list_file pdbs.txt \
+-motif_file motif.txt \
 -strict_dssp_changes false
 ```
-检查命令
+检查命令（对于含有β结构的需要执行此选项）
 
 ```
 edge_file_generator.default.linuxgccrelease -sewing:smotifs_H_5_20_L_1_3_E_3_10_L_1_3_H_5_20.segments tev1.edges
@@ -77,9 +76,11 @@ edge_file_generator.default.linuxgccrelease -sewing:smotifs_H_5_20_L_1_3_E_3_10_
 
 正确的命令
 ```
-edge_file_generator.linuxclangrelease -sewing:model_file_name tev1.segments --edge_file_name tev1.edges
+/public3/home/pg3152/zzl/zzl_softwares/rosetta_src_2021.16.61629_bundle/main/source/bin/edge_file_generator.linuxgccrelease \
+-sewing:model_file_name tev1.segments \
+-edge_file_name tev_1.edges
 ```
-原因是命令写错了┭┮﹏┭┮
+原因是没有写明软件的绝对路径┭┮﹏┭┮
 
 基本格式：
 * `-model_file_name` : Path to the segment file
@@ -99,7 +100,8 @@ example
 ```
 edge_file_generator.default.xxx -model_file_name smotifs_H_1_100_L_1_100_H_1_100.segments -edge_file_name smotifs_H_1_100_L_1_100_H_1_100.edges -boxes_per_dimension 3
 ```
-### 运行组装
+
+### 3.运行组装
 1.先建立一个flag文件
 
 ```
@@ -120,11 +122,16 @@ flag文件建立好之后需要一个pdb文件，这里复制了一个1LN0.pdb�
 
 关于为什么用pdb文件，官方网站的解释是：一定要有，但是执行的过程中是可以忽略的。
 之后执行如下的命令，实现拼接
-```
-rosetta_scripts.linuxgccrelease -s 1LN0.pdb -parser:protocol RosettaScript.xml @flag -nstruct 4 -out:path:pdb output
-```
-但是执行之后出现了报错
 
+```
+/public3/home/pg3152/zzl/zzl_softwares/rosetta_src_2021.16.61629_bundle/main/source/bin/rosetta_scripts.linuxgccrelease \
+-s 1LN0.pdb \
+-parser:protocol RosettaScript.xml @flag \
+-nstruct 10  \
+-out:path:pdb tev_change
+```
+
+但是执行之后出现了报错
 ![image](https://user-images.githubusercontent.com/64938817/166937654-50a91c1d-8db3-4679-b0e5-11046131a971.png)
 选项文件中的注释必须以'#'开头，选项必须以'-'行开头 ？？？不是很懂
 应该是flag文件出现了问题。进行了如下修改
@@ -146,13 +153,7 @@ rosetta_scripts.linuxgccrelease -s 1LN0.pdb -parser:protocol RosettaScript.xml @
 ![image](https://user-images.githubusercontent.com/64938817/166940934-f5cc6cc9-00cc-4f68-9030-32b28800f782.png)
 在说mh用法错误
 
-修改之后可以运行
-
-出现下面的报错：
-
-![image](https://user-images.githubusercontent.com/64938817/166944438-721d7ce8-f9f1-486f-9040-967d2f91daeb.png)
-![image](https://user-images.githubusercontent.com/64938817/166944511-b559760e-30b9-480c-9aad-f8f328343ebc.png)
-
+正确的flag文件：
 ```
 1 -ignore_unrecognized_res                                                                 
   2 -detect_disulf false
