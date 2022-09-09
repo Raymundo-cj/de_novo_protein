@@ -16,3 +16,17 @@ gmx make_ndx -f $pdb'cascade_dna_rmP_solv_ions.gro' -o index.ndx
  ../zl/gmx_step4.sh cascade_dna_rmP
  ../zl/gmx_step5.sh cascade_dna_rmP
  
+2022年9月9日
+
+记录需要解决的问题
+
+蛋白结构设计需要完成的任务
+1.用pymol尝试替换PDB文件中的RNA；
+2.搞明白cascade如何切割DNA已经切割是DNA的状态；
+3.将突变体的结构预测结束；
+4.MD的结果跑完并对结果进行分析；（还有一个可能需要解决的问题，DNA的长度变化问题）
+
+Ago蛋白需要解决的问题
+按照步骤接着跑
+解决bug(重中之重)
+
