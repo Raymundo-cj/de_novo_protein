@@ -1,3 +1,4 @@
+## 1.MD相关流程总结
 gmx pdb2gmx -f cas_dP.pdb -o cas_dP.gro -ignh -missing
 
 gmx editconf -f cas_dP.gro -o cas_dP_new.gro -bt dodecahedron -d 4.0
@@ -29,4 +30,7 @@ gmx make_ndx -f $pdb'cascade_dna_rmP_solv_ions.gro' -o index.ndx
 Ago蛋白需要解决的问题
 按照步骤接着跑
 解决bug(重中之重)
+
+## 2.MD结果的可视化
+
 
