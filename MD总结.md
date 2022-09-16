@@ -17,20 +17,48 @@ gmx make_ndx -f $pdb'cascade_dna_rmP_solv_ions.gro' -o index.ndx
  ../zl/gmx_step4.sh cascade_dna_rmP
  ../zl/gmx_step5.sh cascade_dna_rmP
  
-2022年9月9日
+## 2.师姐提供的MD步骤
 
-记录需要解决的问题
+```
+#!/bin/bash
+###Read the tips below and then start perform MD simulation!!!!
+###step1--5 do not need GPU drive, you can perform them on 并行scb8190,or 胖节点 or GPU2,3,4
+###step6 needs GPU drive ,youcanperform it on GPU2,3,4 or 并行scz4082, use 6 cpu is ok!!!
+###step1:convet pdb to gro
+#gmx pdb2gmx -f 7lys.new.pdb -o 7lys.gro -ignh -missing
+###tips:choose The Amber14sb_parmbsc1 force field and the tip3p water model
+###step2:edit box to solvate
+#gmx editconf -f 7lys.gro -o 7lys_newbox.gro -bt dodecahedron -d 4.0
+#gmx solvate -cp 7lys_newbox.gro -cs spc216.gro -p topol.top -o 7lys_solv.gro
+###step3:generate the ions.tpr file 
+#gmx grompp -f ../codes/em.mdp -c 7lys_solv.gro -r 7lys_solv.gro -p topol.top -o ions.tpr -maxwarn 2
+#gmx genion -s ions.tpr -o 7lys_solv_ions.gro -p topol.top -pname NA -nname CL -np 22
+###step4:minimize the energy
+##make index file
+#gmx make_ndx -f 7lys_solv_ions.gro -o index.ndx
+##generate em.tpr file
+#gmx grompp -f ../codes/em.mdp -c 7lys_solv_ions.gro -r 7lys_solv_ions.gro -p topol.top -n index.ndx -o 7lys_em.tpr -maxwarn 2
+##run energy minimize
+#gmx mdrun -v -deffnm 7lys_em -ntmpi 1 -ntomp 16
+###** -v -deffnm em 默认读取输入文件为em.tpr,能量最小化后生成的文件名也都为em，即生成em.edr，em.trr，em.gro，em.log
+###step5:NVT NPT 预平衡
+#gmx grompp -f ../codes/nvt.mdp -c 7lys_em.gro -r 7lys_em.gro -p topol.top -n index.ndx -o 7lys_nvt.tpr -maxwarn 2
+#wait
+#gmx mdrun -deffnm 7lys_nvt -ntmpi 1 -ntomp 12
+###When perform this step on 并行scb8190,please change thread number to 128
+###NPT系综的体系平衡
+#gmx grompp -f ../codes/npt.mdp -c 7lys_nvt.gro -r 7lys_nvt.gro -t 7lys_nvt.cpt -p topol.top -n index.ndx -o 7lys_npt.tpr -maxwarn 2
+###NPT系综运行体系平衡
+#gmx mdrun -deffnm 7lys_npt -ntmpi 1 -ntomp 10
+###When perform this step on 并行scb8190,please change thread number to 128
+###step6:run md simulation
+#gmx grompp -f ../../codes/md.mdp -c 7lys_npt.gro -r 7lys_npt.gro -t 7lys_npt.cpt -p topol.top -n index.ndx  -o 7lys_md01.tpr -maxwarn 2
+#wait
+#gmx mdrun -s 7lys_md01.tpr -cpi 7lys_md01.cpt -deffnm 7lys_md01 -pme gpu -bonded gpu -dlb yes -pmefft gpu -ntmpi 1 -ntomp 6 -gpu_id 0
 
-蛋白结构设计需要完成的任务
-1.用pymol尝试替换PDB文件中的RNA；
-2.搞明白cascade如何切割DNA已经切割是DNA的状态；
-3.将突变体的结构预测结束；
-4.MD的结果跑完并对结果进行分析；（还有一个可能需要解决的问题，DNA的长度变化问题）
+```
 
-Ago蛋白需要解决的问题
-按照步骤接着跑
-解决bug(重中之重)
 
-## 2.MD结果的可视化
+## 3.MD结果的可视化
 
 
