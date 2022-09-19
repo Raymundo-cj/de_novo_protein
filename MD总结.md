@@ -58,6 +58,11 @@ gmx make_ndx -f $pdb'cascade_dna_rmP_solv_ions.gro' -o index.ndx
 
 ```
 
+### 在并行和并行GPU服务器上下载文件的命令
+
+```
+papp_cloud scp scb8190@bscc-a6:/public1/home/scb8190/caojian/MD/cj-2 /HOME/scz4082/run/caojian/MD/cascade_tev1
+```
 
 ## 3.MD结果的可视化
 
