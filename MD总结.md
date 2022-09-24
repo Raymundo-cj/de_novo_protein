@@ -67,3 +67,14 @@ papp_cloud scp scb8190@bscc-a6:/public1/home/scb8190/caojian/MD/cj-2 /HOME/scz40
 ## 3.MD结果的可视化
 
 
+## 4.MD续跑
+
+在可视化得到的结果不是很理想的时候，需要对已经结束的任务进行续跑，期望RMSD能够稳定
+主要有以下两个命令：
+
+```
+gmx convert-tpr -s cj_md2.tpr -extend 2000 -o cj_md2.tpr
+gmx mdrun -v -deffnm cj_md2 -cpi cj_md2.cpt
+```
+
+
