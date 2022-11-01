@@ -63,6 +63,8 @@ gmx make_ndx -f $pdb'cascade_dna_rmP_solv_ions.gro' -o index.ndx
 ```
 papp_cloud scp scb8190@bscc-a6:/public1/home/scb8190/caojian/MD/cj-2 /HOME/scz4082/run/caojian/MD/cascade_tev1
 ```
+[参考网页](https://papp-cloud.paratera.com/docs/papp3/)
+
 
 ## 3.MD结果的可视化
 
