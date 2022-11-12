@@ -79,4 +79,17 @@ gmx convert-tpr -s cj_md2.tpr -extend 2000 -o cj_md2.tpr
 gmx mdrun -v -deffnm cj_md2 -cpi cj_md2.cpt
 ```
 
+## 5.GPU44上运行aiphafold的相关代码
 
+'''
+# sh文件内容
+work_dir=/mnt/0b4c0b27-228c-4032-80d0-7a7ecca7bfe5/caojian/l1_orf2
+bash run_alphafold.sh -d /mnt/111d8171-c050-4d8b-8bf9-291a43dc804f/like_444/alphafold2 -o $work_dir -m model_1 -f $work_dir/sequence.fasta -t 2021-11-01
+'''
+
+程序路径
+'''
+/mnt/111d8171-c050-4d8b-8bf9-291a43dc804f/like_444/alphafold2/alphafold
+conda activate like_alphafold
+TnpB_af2.sh
+'''
